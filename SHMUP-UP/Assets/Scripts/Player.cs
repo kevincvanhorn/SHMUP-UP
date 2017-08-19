@@ -83,14 +83,42 @@ public class Player : MonoBehaviour {
             velocity.z = 0;
         }
 
-        print(velocity);
+        //print(velocity);
         //rigidBody.velocity = velocity;
         rigidBody.MovePosition(rigidBody.position + velocity * Time.deltaTime);
         //print(GetComponent<Rigidbody>().velocity);
         //rigidBody.AddForce(new Vector3(Input.GetAxis("Horizontal") * moveSpeed, 0, 0));
         //rigidBody.AddForce(new Vector3(0, 0, Input.GetAxis("Vertical") * moveSpeed));
     }
+
+    public void fire()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            
+        }
+    }
+
+    void onCollisionEnter(Collision coll)
+    {
+        print("collisions");
+        if(coll.gameObject.tag == "Enemy")
+        {
+            die();
+        }
+    }
+
+    void onTriggerEnter(Collider other)
+    {
+        print("MAX TRigger");
+    }
+
+    void die()
+    {
+        Destroy(gameObject);
+    }
 }
+
 
 public struct CollisionInfo
 {
