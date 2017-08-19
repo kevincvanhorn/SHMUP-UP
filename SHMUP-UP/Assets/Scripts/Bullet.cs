@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
     public Rigidbody rigidBody;
     public float moveSpeed = -500f;
+    public float damage = 1;
 
 
 	// Use this for initialization
@@ -23,13 +24,11 @@ public class Bullet : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Bounds")
         {
-            Die();
+            Destroy(gameObject);
         }
-        
-    }
-
-    void Die()
-    {
-        Destroy(gameObject);
+        else if(coll.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

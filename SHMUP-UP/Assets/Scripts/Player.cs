@@ -102,7 +102,6 @@ public class Player : MonoBehaviour {
 
     public void CheckFire()
     {
-        print(timeLastFire);
         timeLastFire += Time.deltaTime;
         if (Input.GetKey(KeyCode.Space) && timeLastFire >= fireRate)
         {
