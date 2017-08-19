@@ -9,8 +9,13 @@ public class Player : MonoBehaviour {
     public Rigidbody rigidBody; // Not Kinematic: moves not by transform, but by physics
     public CollisionInfo collisions;
     public float moveSpeed = 300f;
+    public GameObject bullet;
+    public float fireRate = .1f;
 
     private Vector3 velocity;
+    private GameObject bulletSpawn1, bulletSpawn2;
+    private float timeLastFire = 0;
+    
 
     // Use this for initialization
     void Start () {
@@ -21,12 +26,16 @@ public class Player : MonoBehaviour {
         collisions.isLeftPressed = false;
         collisions.isUpPressed = false;
         collisions.isDownPressed = false;
+
+        bulletSpawn1 = transform.Find("BulletSpawn_01").gameObject;
+        bulletSpawn2 = transform.Find("BulletSpawn_02").gameObject;
     }
 	
 	// Update is called once per frame
 	void Update () {
 
         Movement();
+        CheckFire();
     }
 
     void Movement()
@@ -91,30 +100,34 @@ public class Player : MonoBehaviour {
         //rigidBody.AddForce(new Vector3(0, 0, Input.GetAxis("Vertical") * moveSpeed));
     }
 
-    public void fire()
+    public void CheckFire()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        print(timeLastFire);
+        timeLastFire += Time.deltaTime;
+        if (Input.GetKey(KeyCode.Space) && timeLastFire >= fireRate)
         {
-            
+            Fire();
+            timeLastFire = 0;
         }
     }
 
-    void onCollisionEnter(Collision coll)
+    void Fire()
     {
-        print("collisions");
-        if(coll.gameObject.tag == "Enemy")
+        Instantiate(bullet, bulletSpawn1.transform.position, bullet.transform.rotation);
+        Instantiate(bullet, bulletSpawn2.transform.position, bullet.transform.rotation);
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject.tag == "Enemy")
         {
             die();
         }
     }
 
-    void onTriggerEnter(Collider other)
-    {
-        print("MAX TRigger");
-    }
-
     void die()
     {
+
         Destroy(gameObject);
     }
 }
