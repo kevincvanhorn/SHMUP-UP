@@ -11,9 +11,11 @@ public class Player : MonoBehaviour {
     public float moveSpeed = 300f;
     public GameObject bullet;
     public float fireRate = .1f;
+    public GameObject particlesDeath;
 
     private Vector3 velocity;
     private GameObject bulletSpawn1, bulletSpawn2;
+    
     private float timeLastFire = 0;
     
 
@@ -126,8 +128,8 @@ public class Player : MonoBehaviour {
 
     void die()
     {
-
-        Destroy(gameObject);
+        Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
+        Destroy(gameObject);  
     }
 }
 

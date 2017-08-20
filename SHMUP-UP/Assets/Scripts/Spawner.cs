@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour {
 	
 	IEnumerator Spawn()
     {
+
         yield return new WaitForSeconds(1);
         SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);
         SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ);
@@ -32,6 +33,8 @@ public class Spawner : MonoBehaviour {
         SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);
         SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ);
         yield return new WaitForSeconds(.5f);
+
+        StartCoroutine(SpawnLoop());
         
     }
 
@@ -59,5 +62,16 @@ public class Spawner : MonoBehaviour {
             spawnXCur += spacingX;
             spawnZCur += spacingZ;
         }
+    }
+
+    IEnumerator SpawnLoop()
+    {
+        for(int i=0; i<2000; i++)
+        {
+            int randEnemy = (int)Random.Range(0, enemies.Length);
+            Instantiate(enemies[randEnemy], new Vector3(Random.Range(spawnXMin, spawnXMax), spawnY, spawnZ), enemies[randEnemy].transform.rotation);
+            yield return new WaitForSeconds(.5f);
+        }
+        
     }
 }
