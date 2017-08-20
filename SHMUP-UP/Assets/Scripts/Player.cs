@@ -45,7 +45,7 @@ public class Player : MonoBehaviour {
 	void Update () {
         Movement();
         CheckFire();
-        Debug.Log(velocity + " x:" +xDir + " z:"+zDir);
+        //Debug.Log(velocity + " x:" +xDir + " z:"+zDir);
     }
 
     void Movement()

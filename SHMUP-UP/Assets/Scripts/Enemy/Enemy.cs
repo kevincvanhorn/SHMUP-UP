@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-    Rigidbody rigidBody;
+    public Rigidbody rigidBody;
 
     public float moveSpeed = -300f;
     public float health = 15;
@@ -12,13 +12,10 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rigidBody = GetComponent<Rigidbody>();
-
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        Vector3 position = rigidBody.position;
-        rigidBody.MovePosition(new Vector3(position.x, position.y, position.z + moveSpeed*Time.deltaTime));
+	void Update () {        
     }
 
     void OnTriggerEnter(Collider coll)
@@ -35,11 +32,14 @@ public class Enemy : MonoBehaviour {
             }
             
         }
+        else if(coll.gameObject.tag == "Bounds_Enemy")
+        {
+            Die();
+        }
     }
 
-    private void Damage(float damage)
+    protected void Damage(float damage)
     {
-        Debug.Log("DAMAGE");
         health -= damage;
         if(health <= 0)
         {
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    private void Die()
+    protected void Die()
     {
         Destroy(gameObject);
     }

@@ -20,17 +20,7 @@ public class Spawner : MonoBehaviour {
 	IEnumerator Spawn()
     {
 
-        yield return new WaitForSeconds(1);
-        SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);
-        SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ);
-        yield return new WaitForSeconds(.5f);
-        SpawnAcross(0, 3, 120, 0, -120, spawnZ);
-
-        yield return new WaitForSeconds(1);
-        SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);
-        SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ);
-        yield return new WaitForSeconds(.5f);
-        SpawnAcross(0, 3, 120, 0, -120, spawnZ);
+        //yield return null;
 
         yield return new WaitForSeconds(1);
         SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);
