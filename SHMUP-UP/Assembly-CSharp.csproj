@@ -51,9 +51,11 @@
      <Compile Include="Assets\Scripts\Enemy\Enemy01.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy02.cs" />
      <Compile Include="Assets\Scripts\Enemy\TrackMovement.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\ParticleDestroy.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
+     <Compile Include="Assets\Scripts\Tools\Singleton.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

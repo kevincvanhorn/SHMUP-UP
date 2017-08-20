@@ -19,7 +19,14 @@ public class Player : MonoBehaviour {
     private float timeLastFire = 0;
     private float diagSpeedX, diagSpeedZ;
     private float xDir, zDir;
-    
+
+    private GameManager gameManager;
+
+
+    void Awake()
+    {
+        gameManager = GameManager.Instance();
+    }
 
     // Use this for initialization
     void Start () {
@@ -186,6 +193,7 @@ public class Player : MonoBehaviour {
     void Die()
     {
         Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
+        gameManager.isPlayerAlive = false;
         Destroy(gameObject);  
     }
 }

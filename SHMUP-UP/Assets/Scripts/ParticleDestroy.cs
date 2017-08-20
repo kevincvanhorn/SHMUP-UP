@@ -6,7 +6,12 @@ public class ParticleDestroy : MonoBehaviour {
 
     private void Start()
     {
+        
         Destroy(gameObject, GetComponent<ParticleSystem>().main.duration);
     }
 
+    void OnDestroy()
+    {
+        Destroy(transform.parent.gameObject);
+    }
 }
