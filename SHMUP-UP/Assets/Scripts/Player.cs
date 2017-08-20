@@ -43,7 +43,6 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         Movement();
         CheckFire();
         Debug.Log(velocity + " x:" +xDir + " z:"+zDir);
@@ -101,7 +100,7 @@ public class Player : MonoBehaviour {
                 velocity.x = -1*moveSpeed;
         }
 
-       
+       /*On Key Release*/
 
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
