@@ -17,6 +17,8 @@ public class Player : MonoBehaviour {
     private GameObject bulletSpawn1, bulletSpawn2;
     
     private float timeLastFire = 0;
+    private float diagSpeedX, diagSpeedZ;
+    private float xDir, zDir;
     
 
     // Use this for initialization
@@ -31,6 +33,12 @@ public class Player : MonoBehaviour {
 
         bulletSpawn1 = transform.Find("BulletSpawn_01").gameObject;
         bulletSpawn2 = transform.Find("BulletSpawn_02").gameObject;
+
+        diagSpeedX = moveSpeed * Mathf.Cos(45 * Mathf.Deg2Rad);
+        diagSpeedZ = moveSpeed * Mathf.Sin(45*Mathf.Deg2Rad);
+
+        xDir = 1;
+        zDir = 1;
     }
 	
 	// Update is called once per frame
@@ -38,6 +46,7 @@ public class Player : MonoBehaviour {
 
         Movement();
         CheckFire();
+        Debug.Log(velocity + " x:" +xDir + " z:"+zDir);
     }
 
     void Movement()
@@ -46,22 +55,50 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             collisions.isUpPressed = true;
-            velocity.z = moveSpeed;
+            zDir = 1;
+            if(collisions.isLeftPressed || collisions.isRightPressed)
+            {
+                velocity.z = diagSpeedZ;
+                velocity.x = diagSpeedX * xDir;
+            }
+            else
+                velocity.z = moveSpeed;
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             collisions.isDownPressed = true;
-            velocity.z = -1*moveSpeed;
+            zDir = -1;
+            if (collisions.isLeftPressed || collisions.isRightPressed)
+            {
+                velocity.z = -1*diagSpeedZ;
+                velocity.x = diagSpeedX * xDir;
+            }
+            else
+                velocity.z = -1*moveSpeed;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             collisions.isRightPressed = true;
-            velocity.x = moveSpeed; 
+            xDir = 1;
+            if (collisions.isUpPressed || collisions.isDownPressed)
+            {
+                velocity.x = diagSpeedX;
+                velocity.z = diagSpeedZ * zDir;
+            }
+            else
+                velocity.x = moveSpeed;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             collisions.isLeftPressed = true;
-            velocity.x = -1*moveSpeed;
+            xDir = -1;
+            if (collisions.isUpPressed || collisions.isDownPressed)
+            {
+                velocity.x = -1*diagSpeedX;
+                velocity.z = diagSpeedZ * zDir;
+            }
+            else
+                velocity.x = -1*moveSpeed;
         }
 
        
@@ -84,6 +121,12 @@ public class Player : MonoBehaviour {
         }
 
         //---------------
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            //TODO
+        }
+
+        //------------
 
         if (!collisions.isRightPressed && !collisions.isLeftPressed)
         {
@@ -93,8 +136,23 @@ public class Player : MonoBehaviour {
         {
             velocity.z = 0;
         }
+        if(collisions.isUpPressed && !collisions.isLeftPressed && !collisions.isRightPressed)
+        {
+           velocity.z = moveSpeed * zDir;
+        }
+        else if (collisions.isDownPressed && !collisions.isLeftPressed && !collisions.isRightPressed)
+        {
+            velocity.z = moveSpeed * zDir;
+        }
+        else if (collisions.isLeftPressed && !collisions.isUpPressed && !collisions.isDownPressed)
+        {
+            velocity.x = moveSpeed * xDir;
+        }
+        else if (collisions.isRightPressed && !collisions.isUpPressed && !collisions.isDownPressed)
+        {
+            velocity.x = moveSpeed *xDir;
+        }
 
-        //print(velocity);
         //rigidBody.velocity = velocity;
         rigidBody.MovePosition(rigidBody.position + velocity * Time.deltaTime);
         //print(GetComponent<Rigidbody>().velocity);
@@ -105,7 +163,7 @@ public class Player : MonoBehaviour {
     public void CheckFire()
     {
         timeLastFire += Time.deltaTime;
-        if (Input.GetKey(KeyCode.Space) && timeLastFire >= fireRate)
+        if (Input.GetKey(KeyCode.X) && timeLastFire >= fireRate)
         {
             Fire();
             timeLastFire = 0;
@@ -122,11 +180,11 @@ public class Player : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Enemy")
         {
-            die();
+            Die();
         }
     }
 
-    void die()
+    void Die()
     {
         Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
         Destroy(gameObject);  
