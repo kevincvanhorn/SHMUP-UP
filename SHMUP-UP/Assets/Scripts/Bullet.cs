@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour {
     public Rigidbody rigidBody;
     public float moveSpeed = -500f;
     public float damage = 1;
+    public string type; // "Player" or "Enemy"
 
 
 	// Use this for initialization
@@ -26,9 +27,19 @@ public class Bullet : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        else if(coll.gameObject.tag == "Enemy")
-        {
-            Destroy(gameObject);
+        else if(type == "Player"){
+            if(coll.gameObject.tag == "Enemy")
+            {
+                Destroy(gameObject);
+            }
         }
+        else if(type == "Enemy")
+        {
+            if (coll.gameObject.tag == "Player")
+            {
+                Destroy(gameObject);
+            }
+        }
+        
     }
 }

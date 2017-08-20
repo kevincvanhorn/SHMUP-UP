@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print(health);
         Vector3 position = rigidBody.position;
         rigidBody.MovePosition(new Vector3(position.x, position.y, position.z + moveSpeed*Time.deltaTime));
     }
@@ -27,14 +26,20 @@ public class Enemy : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
         }
-        else if(coll.gameObject.tag == "BulletPlayer")
+        else if(coll.gameObject.tag == "Bullet")
         {
-            Damage(coll.gameObject.GetComponent<Bullet>().damage);
+            Bullet bullet = coll.gameObject.GetComponent<Bullet>();
+            if(bullet.type == "Player")
+            {
+                Damage(bullet.damage);
+            }
+            
         }
     }
 
     private void Damage(float damage)
     {
+        Debug.Log("DAMAGE");
         health -= damage;
         if(health <= 0)
         {
