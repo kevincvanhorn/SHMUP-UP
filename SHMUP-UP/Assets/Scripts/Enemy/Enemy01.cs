@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Enemy01 : Enemy {
 
-	// Use this for initialization
-	void Start () {
+    public GameObject particlesDeath;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -13,5 +15,12 @@ public class Enemy01 : Enemy {
 	void Update () {
         Vector3 position = rigidBody.position;
         rigidBody.MovePosition(new Vector3(position.x, position.y, position.z + moveSpeed * Time.deltaTime));
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
+        print("HEY");
     }
 }

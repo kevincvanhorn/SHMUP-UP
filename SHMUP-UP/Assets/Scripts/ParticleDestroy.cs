@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ParticleDestroy : MonoBehaviour {
 
+    public bool hasParent = false;
+
     private void Start()
     {
         

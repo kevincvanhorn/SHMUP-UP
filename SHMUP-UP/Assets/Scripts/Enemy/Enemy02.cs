@@ -6,10 +6,9 @@ public class Enemy02 : Enemy {
 
     public GameObject bullet, bulletSpawn1;
     public GameObject gunParent;
-
-    private float timeLastFire = 0;
     public float fireRate = .1f;
 
+    private float timeLastFire = 0;
     private GameManager gameManager;
 
     void Awake()
@@ -49,5 +48,9 @@ public class Enemy02 : Enemy {
         }
     }
 
+    protected override void Die()
+    {
+        base.Die();
+    }
 
 }

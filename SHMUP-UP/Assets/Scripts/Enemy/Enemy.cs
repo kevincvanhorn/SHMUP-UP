@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour {
         }
         else if(coll.gameObject.tag == "Bounds_Enemy")
         {
-            Die();
+            Destroy(gameObject);
         }
     }
 
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    protected void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
     }
