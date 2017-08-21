@@ -203,6 +203,11 @@ public class Player : MonoBehaviour {
         }
     }
 
+    void OnParticleCollision(GameObject other)
+    {
+        Die();
+    }
+
     void Die()
     {
         Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);

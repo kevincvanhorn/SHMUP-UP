@@ -7,6 +7,7 @@ public class Enemy02 : Enemy {
     public GameObject bullet, bulletSpawn1;
     public GameObject gunParent;
     public float fireRate = .1f;
+    public int ammo = 3;
 
     private float timeLastFire = 0;
     private GameManager gameManager;
@@ -41,9 +42,10 @@ public class Enemy02 : Enemy {
     IEnumerator Fire()
     {
         yield return new WaitForSeconds(1f);
-        while (isActiveAndEnabled && gameManager.isPlayerAlive) {
+        while (ammo >0) {//(isActiveAndEnabled && gameManager.isPlayerAlive) {
             Vector3 rot = new Vector3(bullet.transform.rotation.x, bullet.transform.rotation.y, bulletSpawn1.transform.rotation.z);
             Instantiate(bullet, bulletSpawn1.transform.position, bullet.transform.rotation);
+            ammo--;
             yield return new WaitForSeconds(.5f);
         }
     }

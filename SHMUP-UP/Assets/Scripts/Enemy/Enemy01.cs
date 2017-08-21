@@ -21,6 +21,5 @@ public class Enemy01 : Enemy {
     {
         base.Die();
         Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
-        print("HEY");
     }
 }
