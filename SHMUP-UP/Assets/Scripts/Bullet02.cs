@@ -12,9 +12,18 @@ public class Bullet02 : Bullet
     {
         type = "Enemy";
         rigidBody = GetComponent<Rigidbody>();
-
-        GameObject go = GameObject.Find("Player_01");
-        target = go.transform;
+        if (gameManager.isPlayerAlive)
+        {
+            GameObject go = GameObject.Find("Player_01");
+            target = go.transform;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+            
+            
+        
         transform.LookAt(new Vector3(target.transform.position.x,this.transform.position.y,target.transform.position.z));
         transform.Rotate(new Vector3(90, 0, 0));
     }

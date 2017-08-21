@@ -10,12 +10,6 @@ public class Enemy02 : Enemy {
     public int ammo = 3;
 
     private float timeLastFire = 0;
-    private GameManager gameManager;
-
-    void Awake()
-    {
-        gameManager = GameManager.Instance();
-    }
 
     // Use this for initialization
     void Start () {
@@ -42,7 +36,7 @@ public class Enemy02 : Enemy {
     IEnumerator Fire()
     {
         yield return new WaitForSeconds(1f);
-        while (ammo >0) {//(isActiveAndEnabled && gameManager.isPlayerAlive) {
+        while (ammo >0 && gameManager.isPlayerAlive) {//(isActiveAndEnabled && gameManager.isPlayerAlive) {
             Vector3 rot = new Vector3(bullet.transform.rotation.x, bullet.transform.rotation.y, bulletSpawn1.transform.rotation.z);
             Instantiate(bullet, bulletSpawn1.transform.position, bullet.transform.rotation);
             ammo--;

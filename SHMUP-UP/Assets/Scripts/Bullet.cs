@@ -10,8 +10,15 @@ public class Bullet : MonoBehaviour {
     public string type; // "Player" or "Enemy"
 
 
-	// Use this for initialization
-	void Start () {
+    protected GameManager gameManager;
+
+    void Awake()
+    {
+        gameManager = GameManager.Instance();
+    }
+
+    // Use this for initialization
+    void Start () {
         rigidBody = GetComponent<Rigidbody>();
 	}
 

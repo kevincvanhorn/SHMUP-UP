@@ -7,9 +7,17 @@ public class Enemy : MonoBehaviour {
 
     public float moveSpeed = -300f;
     public float health = 15;
+    public int hitScore = 0, killScore = 0;
 
-	// Use this for initialization
-	void Start () {
+    protected GameManager gameManager;
+
+    void Awake()
+    {
+        gameManager = GameManager.Instance();
+    }
+
+    // Use this for initialization
+    void Start () {
         rigidBody = GetComponent<Rigidbody>();
 	}
 	
@@ -27,6 +35,7 @@ public class Enemy : MonoBehaviour {
             Bullet bullet = coll.gameObject.GetComponent<Bullet>();
             if(bullet.type == "Player")
             {
+                gameManager.score += hitScore;
                 Damage(bullet.damage);
             }
             
@@ -48,6 +57,7 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void Die()
     {
+        gameManager.score += killScore;
         Destroy(gameObject);
     }
 
