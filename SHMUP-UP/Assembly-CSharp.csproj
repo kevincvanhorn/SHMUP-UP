@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Bullet.cs" />
+     <Compile Include="Assets\Scripts\Bullet02.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy01.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy02.cs" />

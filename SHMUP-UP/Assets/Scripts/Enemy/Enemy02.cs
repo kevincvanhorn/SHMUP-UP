@@ -4,14 +4,43 @@ using UnityEngine;
 
 public class Enemy02 : Enemy {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public GameObject bullet, bulletSpawn1;
+    public GameObject gunParent;
+
+    private float timeLastFire = 0;
+    public float fireRate = .1f;
+
+    // Use this for initialization
+    void Start () {
+        //bulletSpawn1 = transform.Find("BulletSpawn_01").gameObject;
+        StartCoroutine(Fire());
+    }
 	
 	// Update is called once per frame
 	void Update () {
         Vector3 position = rigidBody.position;
         rigidBody.MovePosition(new Vector3(position.x, position.y, position.z + moveSpeed * Time.deltaTime));
     }
+
+    public void CheckFire()
+    {
+        timeLastFire += Time.deltaTime;
+        if (timeLastFire >= fireRate)
+        {
+            Fire();
+            timeLastFire = 0;
+        }
+    }
+
+    IEnumerator Fire()
+    {
+        yield return new WaitForSeconds(1f);
+        while (isActiveAndEnabled) {
+            Vector3 rot = new Vector3(bullet.transform.rotation.x, bullet.transform.rotation.y, bulletSpawn1.transform.rotation.z);
+            Instantiate(bullet, bulletSpawn1.transform.position, bullet.transform.rotation);
+            yield return new WaitForSeconds(.5f);
+        }
+    }
+
+
 }

@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour {
 
     public float moveSpeed = -300f;
     public float health = 15;
-    public float firerate;
 
 	// Use this for initialization
 	void Start () {

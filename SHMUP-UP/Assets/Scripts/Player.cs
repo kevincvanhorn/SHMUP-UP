@@ -160,7 +160,10 @@ public class Player : MonoBehaviour {
         }
 
         //rigidBody.velocity = velocity;
+        //Debug.Log(rigidBody.velocity);
         rigidBody.MovePosition(rigidBody.position + velocity * Time.deltaTime);
+
+
         //print(GetComponent<Rigidbody>().velocity);
         //rigidBody.AddForce(new Vector3(Input.GetAxis("Horizontal") * moveSpeed, 0, 0));
         //rigidBody.AddForce(new Vector3(0, 0, Input.GetAxis("Vertical") * moveSpeed));
@@ -187,6 +190,16 @@ public class Player : MonoBehaviour {
         if (coll.gameObject.tag == "Enemy")
         {
             Die();
+        }
+
+        else if (coll.gameObject.tag == "Bullet")
+        {
+            Bullet bullet = coll.gameObject.GetComponent<Bullet>();
+            if (bullet.type == "Enemy")
+            {
+                Die();
+            }
+
         }
     }
 
