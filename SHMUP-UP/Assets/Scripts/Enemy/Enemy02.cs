@@ -10,6 +10,13 @@ public class Enemy02 : Enemy {
     private float timeLastFire = 0;
     public float fireRate = .1f;
 
+    private GameManager gameManager;
+
+    void Awake()
+    {
+        gameManager = GameManager.Instance();
+    }
+
     // Use this for initialization
     void Start () {
         //bulletSpawn1 = transform.Find("BulletSpawn_01").gameObject;
@@ -35,7 +42,7 @@ public class Enemy02 : Enemy {
     IEnumerator Fire()
     {
         yield return new WaitForSeconds(1f);
-        while (isActiveAndEnabled) {
+        while (isActiveAndEnabled && gameManager.isPlayerAlive) {
             Vector3 rot = new Vector3(bullet.transform.rotation.x, bullet.transform.rotation.y, bulletSpawn1.transform.rotation.z);
             Instantiate(bullet, bulletSpawn1.transform.position, bullet.transform.rotation);
             yield return new WaitForSeconds(.5f);

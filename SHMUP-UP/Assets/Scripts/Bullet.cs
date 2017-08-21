@@ -14,12 +14,6 @@ public class Bullet : MonoBehaviour {
 	void Start () {
         rigidBody = GetComponent<Rigidbody>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        Vector3 position = rigidBody.position;
-        rigidBody.MovePosition(new Vector3(position.x, position.y, position.z + moveSpeed*Time.deltaTime));
-	}
 
     void OnTriggerEnter(Collider coll)
     {

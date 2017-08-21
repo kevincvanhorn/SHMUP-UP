@@ -2,21 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet02 : MonoBehaviour
+public class Bullet02 : Bullet
 {
-
-    public Rigidbody rigidBody;
-    public float moveSpeed = -500f;
-    public float damage = 1;
-    public string type = "Enemy"; // "Player" or "Enemy"
-
     private Vector3 velocity;
-
     private Transform target;
 
     // Use this for initialization
     void Start()
     {
+        type = "Enemy";
         rigidBody = GetComponent<Rigidbody>();
 
         GameObject go = GameObject.Find("Player_01");
@@ -29,29 +23,7 @@ public class Bullet02 : MonoBehaviour
     void Update()
     {
         Vector3 rot = transform.up;
-        rigidBody.MovePosition(rigidBody.position + (rot*moveSpeed) * Time.deltaTime);
-    }
-
-    void OnTriggerEnter(Collider coll)
-    {
-        if (coll.gameObject.tag == "Bounds")
-        {
-            Destroy(gameObject);
-        }
-        else if (type == "Player")
-        {
-            if (coll.gameObject.tag == "Enemy")
-            {
-                Destroy(gameObject);
-            }
-        }
-        else if (type == "Enemy")
-        {
-            if (coll.gameObject.tag == "Player")
-            {
-                Destroy(gameObject);
-            }
-        }
-
+        //rigidBody.MovePosition(rigidBody.position + (rot*moveSpeed) * Time.deltaTime);
+        rigidBody.velocity = rot * moveSpeed;
     }
 }

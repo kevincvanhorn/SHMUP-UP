@@ -205,9 +205,9 @@ public class Player : MonoBehaviour {
 
     void Die()
     {
-        Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
+        /*Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
         gameManager.isPlayerAlive = false;
-        Destroy(gameObject);  
+        Destroy(gameObject);  */
     }
 }
 
