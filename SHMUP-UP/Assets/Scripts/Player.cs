@@ -13,12 +13,18 @@ public class Player : MonoBehaviour {
     public float fireRate = .1f;
     public GameObject particlesDeath;
 
+    public float moveXMin = -660;
+    public float moveXMax = 660;
+    public float moveZMin = 480;
+    public float moveZMax = -480;
+
     private Vector3 velocity;
     private GameObject bulletSpawn1, bulletSpawn2;
     
     private float timeLastFire = 0;
     private float diagSpeedX, diagSpeedZ;
     private float xDir, zDir;
+    private Vector3 newPos;
 
     private GameManager gameManager;
 
@@ -161,7 +167,17 @@ public class Player : MonoBehaviour {
 
         //rigidBody.velocity = velocity;
         //Debug.Log(rigidBody.velocity);
-        rigidBody.MovePosition(rigidBody.position + velocity * Time.deltaTime);
+        newPos = rigidBody.position + velocity * Time.deltaTime;
+        if (newPos.x < moveXMin || newPos.x > moveXMax)
+        {
+            newPos.x = transform.position.x;
+        }
+        if (newPos.z > moveZMin || newPos.z < moveZMax)
+        {
+            newPos.z = transform.position.z;
+        }
+        rigidBody.MovePosition(newPos);
+        
 
 
         //print(GetComponent<Rigidbody>().velocity);
