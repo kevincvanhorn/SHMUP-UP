@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour {
     // By calling modalPanel.Instance, it will return a reference to this script.
     public static GameManager Instance()
     {
+        // Maintain one copy through scene reload.
         if (!gameManager)
         {
             gameManager = FindObjectOfType(typeof(GameManager)) as GameManager;
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        GameObject.DontDestroyOnLoad(gameObject);
         StartCoroutine("AddScore");
 	}
 	
@@ -37,7 +40,8 @@ public class GameManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            //Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(1);
+            
         }
             
     }
