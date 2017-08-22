@@ -9,10 +9,17 @@ public class Enemy02 : Enemy {
     public float fireRate = .1f;
     public int ammo = 3;
 
+    private Animator animator;
+
     private float timeLastFire = 0;
+
+    public GameObject particlesDeath;
 
     // Use this for initialization
     void Start () {
+        animator = GetComponent<Animator>();
+        if(transform.position.x < -100)
+            animator.SetBool("isFlipped",true);
         //bulletSpawn1 = transform.Find("BulletSpawn_01").gameObject;
         StartCoroutine(Fire());
     }
@@ -47,6 +54,7 @@ public class Enemy02 : Enemy {
     protected override void Die()
     {
         base.Die();
+        Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
     }
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-    public Enemy[] enemies;
+    public GameObject[] enemies;
 
     private float spawnXMin = -650;
     private float spawnXMax = 650;
@@ -34,7 +34,8 @@ public class Spawner : MonoBehaviour {
         SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ);
         yield return new WaitForSeconds(.5f);
 
-        StartCoroutine(SpawnLoop());
+        StartCoroutine(SpawnLoop(0,.5f));
+        StartCoroutine(SpawnLoop(1, 3f));
         
     }
 
@@ -64,13 +65,28 @@ public class Spawner : MonoBehaviour {
         }
     }
 
-    IEnumerator SpawnLoop()
+    IEnumerator SpawnLoop(int enemy, float frequency)
     {
+        float mySpawnZ = spawnZ;
+        float mySpawnY = spawnY;
+        float mySpawnXMin = spawnXMin;
+        float mySpawnXMax = spawnXMax;
+
+        if (enemy == 1)
+        {
+            mySpawnY = 0;
+            mySpawnXMin = -650;
+            mySpawnXMax = 320;
+        }
+
         for(int i=0; i<2000; i++)
         {
-            int randEnemy = (int)Random.Range(0, enemies.Length);
-            Instantiate(enemies[randEnemy], new Vector3(Random.Range(spawnXMin, spawnXMax), spawnY, spawnZ), enemies[randEnemy].transform.rotation);
-            yield return new WaitForSeconds(.5f);
+            //int randEnemy = (int)Random.Range(0, enemies.Length);
+            Instantiate(enemies[enemy], new Vector3(Random.Range(mySpawnXMin, mySpawnXMax), mySpawnY, mySpawnZ), enemies[enemy].transform.rotation);
+            yield return new WaitForSeconds(frequency);
+
+            if (enemy == 1)
+                mySpawnZ = Random.Range(0, 455);
         }
         
     }
