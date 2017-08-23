@@ -52,6 +52,8 @@ public class Player : MonoBehaviour {
 
         xDir = 1;
         zDir = 1;
+
+        gameManager.isPlayerAlive = true;
     }
 	
 	// Update is called once per frame
@@ -228,6 +230,7 @@ public class Player : MonoBehaviour {
     {
         Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
         gameManager.isPlayerAlive = false;
+        gameManager.Lives--;
         Destroy(gameObject);
     }
 }

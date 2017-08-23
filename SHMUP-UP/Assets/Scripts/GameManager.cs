@@ -11,7 +11,21 @@ public class GameManager : MonoBehaviour {
     public bool isPlayerAlive = true;
 
     public Text scoreText;
+    public Text livesText;
+
     public int score;
+    private int lives;
+
+    public int Lives
+    {
+        get { return lives; }
+        set
+        {
+            lives = value;
+            UpdateLives();
+        }
+
+    }
 
     /* Modified Singleton-Style, static reference */
     // By calling modalPanel.Instance, it will return a reference to this script.
@@ -30,7 +44,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GameObject.DontDestroyOnLoad(gameObject);
+        Lives = 7;
         StartCoroutine("AddScore");
 	}
 	
@@ -54,5 +68,10 @@ public class GameManager : MonoBehaviour {
             score++;
         }
         
+    }
+
+    public void UpdateLives()
+    {
+        livesText.text = lives.ToString();
     }
 }
