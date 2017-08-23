@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour {
     private static GameManager gameManager;
 
     public bool isPlayerAlive = true;
+    public bool isGameOver = false;
 
     public Text scoreText;
     public Text livesText;
+    public GameObject gameOverPanel;
 
     public int score;
     private int lives;
@@ -44,6 +46,9 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        gameOverPanel = GameObject.Find("GameOverPanel");
+        gameOverPanel.gameObject.SetActive(false);
+
         Lives = 7;
         StartCoroutine("AddScore");
 	}
@@ -73,5 +78,15 @@ public class GameManager : MonoBehaviour {
     public void UpdateLives()
     {
         livesText.text = lives.ToString();
+        if(lives <= 0)
+        {
+            onGameOver();
+        }
+    }
+
+    void onGameOver()
+    {
+        isGameOver = true;
+        gameOverPanel.gameObject.SetActive(true);
     }
 }

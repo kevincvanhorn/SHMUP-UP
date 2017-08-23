@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 
@@ -17,6 +18,8 @@ public class Player : MonoBehaviour {
     public float moveXMax = 660;
     public float moveZMin = 480;
     public float moveZMax = -480;
+
+    public UnityEvent playerDeath;
 
     private Vector3 velocity;
     private GameObject bulletSpawn1, bulletSpawn2;
@@ -53,7 +56,12 @@ public class Player : MonoBehaviour {
         xDir = 1;
         zDir = 1;
 
+        if (playerDeath == null)
+            playerDeath = new UnityEvent();
+        PlayerSpawner playerSpawner = FindObjectOfType<PlayerSpawner>();
+        playerDeath.AddListener(playerSpawner.OnPlayerDie);
         gameManager.isPlayerAlive = true;
+        
     }
 	
 	// Update is called once per frame
@@ -228,9 +236,9 @@ public class Player : MonoBehaviour {
 
     void Die()
     {
-        Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
         gameManager.isPlayerAlive = false;
-        gameManager.Lives--;
+        Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
+        playerDeath.Invoke();
         Destroy(gameObject);
     }
 }

@@ -16,7 +16,7 @@ public class TrackMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         if(gameManager.isPlayerAlive)
-            player = GameObject.Find("Player_01").transform;
+            player = GameObject.FindObjectOfType<Player>().transform;
 	}
 	
 	// Update is called once per frame
@@ -25,9 +25,8 @@ public class TrackMovement : MonoBehaviour {
         //transform.rotation = Quaternion.Euler(new Vector3(-90, 0, transform.rotation.z));
         if (gameManager.isPlayerAlive)
         {
-            Vector3 targetPostition = new Vector3(player.transform.position.x,this.transform.position.y,player.position.z);
+            Vector3 targetPostition = new Vector3(player.transform.position.x, this.transform.position.y, player.position.z);
             this.transform.LookAt(targetPostition);
-        }
-        
+        } 
     }
 }
