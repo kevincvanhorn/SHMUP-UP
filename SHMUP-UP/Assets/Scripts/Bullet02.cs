@@ -14,7 +14,7 @@ public class Bullet02 : Bullet
         rigidBody = GetComponent<Rigidbody>();
         if (gameManager.isPlayerAlive)
         {
-            GameObject go = GameObject.Find("Player_01");
+            Player go = GameObject.FindObjectOfType<Player>();
             target = go.transform;
         }
         else

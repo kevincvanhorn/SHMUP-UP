@@ -15,7 +15,9 @@ public class TrackMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if(gameManager.isPlayerAlive)
+        PlayerSpawner.OnPlayerSpawn += OnPlayerSpawn;
+
+        if (gameManager.isPlayerAlive)
             player = GameObject.FindObjectOfType<Player>().transform;
 	}
 	
@@ -28,5 +30,15 @@ public class TrackMovement : MonoBehaviour {
             Vector3 targetPostition = new Vector3(player.transform.position.x, this.transform.position.y, player.position.z);
             this.transform.LookAt(targetPostition);
         } 
+    }
+
+    void OnPlayerSpawn()
+    {
+        player = GameObject.FindObjectOfType<Player>().transform;
+    }
+
+    void OnDisable()
+    {
+        PlayerSpawner.OnPlayerSpawn -= OnPlayerSpawn;
     }
 }

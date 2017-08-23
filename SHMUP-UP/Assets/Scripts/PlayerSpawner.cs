@@ -5,11 +5,30 @@ using UnityEngine.Events;
 
 public class PlayerSpawner : MonoBehaviour {
 
+    //private static PlayerSpawner playerSpawner;
+
+    public delegate void PlayerSpawnDelegate();
+    public static event PlayerSpawnDelegate OnPlayerDeath;
+    public static event PlayerSpawnDelegate OnPlayerSpawn;
+
     public Player player;
     public GameObject playerSpawn;
-
     private GameManager gameManager;
 
+    /* Modified Singleton-Style, static reference */
+    // By calling modalPanel.Instance, it will return a reference to this script.
+    /*public static PlayerSpawner Instance()
+    {
+        // Maintain one copy through scene reload.
+        if (!playerSpawner)
+        {
+            playerSpawner = FindObjectOfType(typeof(PlayerSpawner)) as PlayerSpawner;
+            if (!playerSpawner)
+                Debug.LogError("There needs to be one active GameManager script on a GameObject in the scene.");
+        }
+
+        return playerSpawner;
+    }*/
 
     void Awake()
     {
@@ -29,12 +48,15 @@ public class PlayerSpawner : MonoBehaviour {
     public void SpawnPlayer()
     {
         Instantiate(player, playerSpawn.transform.position, player.transform.rotation);
+        if (OnPlayerSpawn != null)
+            OnPlayerSpawn();
     }
 
     public void OnPlayerDie()
     {
-        print("NOOOOOOOOOOOOOOOOOOOO!");
         gameManager.Lives--;
+        if (OnPlayerDeath != null)
+            OnPlayerDeath();
         StartCoroutine(DelayedSpawn());
     }
 
