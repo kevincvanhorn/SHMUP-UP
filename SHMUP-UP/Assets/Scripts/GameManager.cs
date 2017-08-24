@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     private static GameManager gameManager;
 
     public bool isPlayerAlive = true;
+    public bool isPlayerInvunlverable = false;
     public bool isGameOver = false;
 
     public Text scoreText;
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator AddScore()
     {
-        while (isActiveAndEnabled && isPlayerAlive)
+        while (isActiveAndEnabled && !isGameOver)
         {
             yield return new WaitForSeconds(.05f);
             score++;

@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
     private float diagSpeedX, diagSpeedZ;
     private float xDir, zDir;
     private Vector3 newPos;
+    private Shader shader;
 
     private GameManager gameManager;
 
@@ -61,6 +62,8 @@ public class Player : MonoBehaviour {
         PlayerSpawner playerSpawner = FindObjectOfType<PlayerSpawner>();
         playerDeath.AddListener(playerSpawner.OnPlayerDie);
         gameManager.isPlayerAlive = true;
+
+        shader = GetComponent<Shader>();
         
     }
 	
@@ -213,25 +216,29 @@ public class Player : MonoBehaviour {
 
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.tag == "Enemy")
+        if (!gameManager.isPlayerInvunlverable)
         {
-            Die();
-        }
-
-        else if (coll.gameObject.tag == "Bullet")
-        {
-            Bullet bullet = coll.gameObject.GetComponent<Bullet>();
-            if (bullet.type == "Enemy")
+            if (coll.gameObject.tag == "Enemy")
             {
                 Die();
             }
 
+            else if (coll.gameObject.tag == "Bullet")
+            {
+                Bullet bullet = coll.gameObject.GetComponent<Bullet>();
+                if (bullet.type == "Enemy")
+                {
+                    Die();
+                }
+
+            }
         }
     }
 
     void OnParticleCollision(GameObject other)
     {
-        Die();
+        if(!gameManager.isPlayerInvunlverable)
+            Die();
     }
 
     void Die()
@@ -240,6 +247,11 @@ public class Player : MonoBehaviour {
         Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
         playerDeath.Invoke();
         Destroy(gameObject);
+    }
+
+    IEnumerator CycleEmission()
+    {
+        yield return null;
     }
 }
 

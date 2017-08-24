@@ -48,6 +48,7 @@ public class PlayerSpawner : MonoBehaviour {
     public void SpawnPlayer()
     {
         Instantiate(player, playerSpawn.transform.position, player.transform.rotation);
+        StartCoroutine(MakeInvulnerable());
         if (OnPlayerSpawn != null)
             OnPlayerSpawn();
     }
@@ -65,5 +66,12 @@ public class PlayerSpawner : MonoBehaviour {
         yield return new WaitForSeconds(1);
         if(!gameManager.isGameOver)
             SpawnPlayer();
+    }
+
+    IEnumerator MakeInvulnerable()
+    {
+        gameManager.isPlayerInvunlverable = true;
+        yield return new WaitForSeconds(2.5f);
+        gameManager.isPlayerInvunlverable = false;
     }
 }
