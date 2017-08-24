@@ -36,7 +36,8 @@ public class Spawner : MonoBehaviour {
 
         StartCoroutine(SpawnLoop(0,.5f));
         StartCoroutine(SpawnLoop(1, 3f));
-        
+        StartCoroutine(SpawnLoop(2, 8f));
+
     }
 
     /*IEnumerator SpawnAcross(int enemy, int numAcross, float spacing, float spawnXStart, float spawnDelay)
