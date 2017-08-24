@@ -28,7 +28,11 @@ public class Player : MonoBehaviour {
     private float diagSpeedX, diagSpeedZ;
     private float xDir, zDir;
     private Vector3 newPos;
-    private Shader shader;
+
+    
+    Material material;
+    public Color color;
+    Renderer renderer;
 
     private GameManager gameManager;
 
@@ -63,8 +67,10 @@ public class Player : MonoBehaviour {
         playerDeath.AddListener(playerSpawner.OnPlayerDie);
         gameManager.isPlayerAlive = true;
 
-        shader = GetComponent<Shader>();
-        
+        renderer = GetComponent<Renderer>();
+        material = renderer.sharedMaterial;
+
+        StartCoroutine(CycleEmission());
     }
 	
 	// Update is called once per frame
@@ -251,7 +257,22 @@ public class Player : MonoBehaviour {
 
     IEnumerator CycleEmission()
     {
-        yield return null;
+
+        /*Material mat = GetComponentInChildren<SkinnedMeshRenderer>().materials[0];
+        mat.SetFloat("_Mode", 2.0f);
+        Material.SetColor("_Color", yourColor);*/
+        float intensity = 1.0f;
+        material.EnableKeyword("_EMISSION");
+        
+        while (gameManager.isPlayerInvunlverable)
+        {
+            material.SetColor("_EmissionColor", new Color(0.9264706f, 0.8096752f, 0.1566825f, 1.0f) * intensity);
+            intensity = Mathf.Sin(Time.time * 8) * .5f;
+            yield return null;
+        }
+        material.SetColor("_EmissionColor", new Color(0.9264706f, 0.8096752f, 0.1566825f, 1.0f) * 0.0f);
+
+        
     }
 }
 
