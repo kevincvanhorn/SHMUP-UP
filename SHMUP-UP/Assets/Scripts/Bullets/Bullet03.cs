@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet03 : Bullet
 {
+    public float lifeTime = 2;
+
     private Vector3 velocity;
     private Transform target;
     private Vector3 rot;
@@ -26,7 +28,7 @@ public class Bullet03 : Bullet
 
     IEnumerator DelayedDestroy()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(lifeTime);
         Destroy(gameObject);
     }
 }
