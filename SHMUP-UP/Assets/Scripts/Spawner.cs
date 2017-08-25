@@ -37,6 +37,7 @@ public class Spawner : MonoBehaviour {
         StartCoroutine(SpawnLoop(0,.5f));
         StartCoroutine(SpawnLoop(1, 3f));
         StartCoroutine(SpawnLoop(2, 8f));
+        StartCoroutine(SpawnLoop(3, 11f));
 
     }
 
@@ -86,13 +87,21 @@ public class Spawner : MonoBehaviour {
             mySpawnXMin = -380;
             mySpawnXMax = 600;
         }
+        if (enemy == 3)
+        {
+            mySpawnY = 0;
+            mySpawnXMin = -600;
+            mySpawnXMax = 520;
+        }
 
         for (int i=0; i<2000; i++)
         {
             if (enemy == 1)
                 mySpawnZ = Random.Range(0, 455);
-            if (enemy == 2)
+            else if (enemy == 2)
                 mySpawnZ = Random.Range(1100, 1500);
+            else if(enemy == 3)
+                mySpawnZ = Random.Range(1700, 2000);
 
             //int randEnemy = (int)Random.Range(0, enemies.Length);
             Instantiate(enemies[enemy], new Vector3(Random.Range(mySpawnXMin, mySpawnXMax), mySpawnY, mySpawnZ), enemies[enemy].transform.rotation);

@@ -28,7 +28,7 @@ public class Enemy04 : Enemy
 
     IEnumerator Fire()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3.2f);
         while (ammo > 0 && gameManager.isPlayerAlive)
         {//(isActiveAndEnabled && gameManager.isPlayerAlive) {
             Instantiate(bullet, bulletSpawn1.transform.position, bulletSpawn1.transform.rotation);
