@@ -89,12 +89,14 @@ public class Spawner : MonoBehaviour {
 
         for (int i=0; i<2000; i++)
         {
+            if (enemy == 1)
+                mySpawnZ = Random.Range(0, 455);
+            if (enemy == 2)
+                mySpawnZ = Random.Range(1100, 1500);
+
             //int randEnemy = (int)Random.Range(0, enemies.Length);
             Instantiate(enemies[enemy], new Vector3(Random.Range(mySpawnXMin, mySpawnXMax), mySpawnY, mySpawnZ), enemies[enemy].transform.rotation);
             yield return new WaitForSeconds(frequency);
-
-            if (enemy == 1)
-                mySpawnZ = Random.Range(0, 455);
         }
         
     }
