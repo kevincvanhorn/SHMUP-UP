@@ -55,7 +55,9 @@
      <Compile Include="Assets\Scripts\Enemy\Enemy01.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy02.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy03.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Enemy04.cs" />
      <Compile Include="Assets\Scripts\Enemy\TrackMovement.cs" />
+     <Compile Include="Assets\Scripts\Enemy\TrackMovementSmooth.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerSpawner.cs" />

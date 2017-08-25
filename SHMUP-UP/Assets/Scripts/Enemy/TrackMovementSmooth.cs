@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrackMovement : MonoBehaviour {
+public class TrackMovementSmooth : MonoBehaviour
+{
     Transform player;
-    float speedMultiplier = 1;//5f;
+    public float speedMultiplier = 1;
     public bool canTrack = true;
+
+    private Transform RotTransform;
 
     private GameManager gameManager;
 
@@ -14,24 +17,25 @@ public class TrackMovement : MonoBehaviour {
         gameManager = GameManager.Instance();
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         PlayerSpawner.OnPlayerSpawn += OnPlayerSpawn;
 
         if (gameManager.isPlayerAlive)
             player = GameObject.FindObjectOfType<Player>().transform;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //transform.LookAt(player, transform.up);
-        //transform.rotation = Quaternion.Euler(new Vector3(-90, 0, transform.rotation.z));
-        Debug.Log(gameManager.isPlayerAlive + " canTrack: " + canTrack);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (gameManager.isPlayerAlive && canTrack)
         {
-            Vector3 targetPostition = new Vector3(player.transform.position.x, this.transform.position.y, player.position.z);
-            this.transform.LookAt(targetPostition);
-        } 
+            Vector3 targetPosition = new Vector3(player.transform.position.x, this.transform.position.y, player.position.z);
+            var rotation = Quaternion.LookRotation(targetPosition - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speedMultiplier);
+
+        }
     }
 
     void OnPlayerSpawn()

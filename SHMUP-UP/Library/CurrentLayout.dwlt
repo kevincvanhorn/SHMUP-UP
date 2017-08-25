@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 887, y: 492}
   m_MaxSize: {x: 16012, y: 14042}
   vertical: 0
-  controlID: 51
+  controlID: 11
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 610, y: 492}
   m_MaxSize: {x: 12010, y: 14042}
   vertical: 1
-  controlID: 52
+  controlID: 12
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_MinSize: {x: 610, y: 221}
   m_MaxSize: {x: 12010, y: 4021}
   vertical: 0
-  controlID: 53
+  controlID: 13
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -175,10 +175,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 204
+    width: 279
     height: 490
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -198,9 +198,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 204
+    x: 279
     y: 0
-    width: 441
+    width: 366
     height: 490
   m_MinSize: {x: 204, y: 221}
   m_MaxSize: {x: 4004, y: 4021}
@@ -228,8 +228,8 @@ MonoBehaviour:
     y: 0
     width: 581
     height: 490
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -387,13 +387,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 63
     y: 92
-    width: 202
+    width: 277
     height: 469
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d0fbffff
-    m_LastClickedID: -1072
-    m_ExpandedIDs: 9cfbffffe8fbffff00000000
+    m_SelectedIDs: 5873fdff
+    m_LastClickedID: -167080
+    m_ExpandedIDs: aec4f6ff647ef8ff5673fdff5a73fdff12d1fdffb8f2fdff4cebffff50ebffff90fbffffa8fbffffcefbffffe8fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -438,19 +438,19 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
-    x: 269
+    x: 344
     y: 92
-    width: 437
+    width: 362
     height: 469
   m_SceneLighting: 1
-  lastFramingTime: 944.9063036305367
+  lastFramingTime: 4391.5183902457
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 64.96134, y: 120.18811, z: -80.121}
+    m_Target: {x: 34.813816, y: 102.52394, z: 17.36134}
     speed: 2
-    m_Value: {x: 64.96134, y: 120.18811, z: -80.121}
+    m_Value: {x: 34.813816, y: 102.52394, z: 17.36134}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -473,13 +473,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+    m_Target: {x: 0.2416406, y: -0.25124243, z: 0.064928755, w: 0.93502754}
     speed: 2
-    m_Value: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+    m_Value: {x: 0.24163996, y: -0.25124177, z: 0.064928584, w: 0.9350251}
   m_Size:
-    m_Target: 2641.2375
+    m_Target: 97.53195
     speed: 2
-    m_Value: 2641.2375
+    m_Value: 97.53195
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -606,35 +606,35 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts/Bullets
+    - Assets/Scripts/Enemy
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Bullets
+  - Assets/Scripts/Enemy
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\kevinthellama\Documents\Github\SHUMP-UP\SHMUP-UP
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 76}
-    m_SelectedIDs: a2250000
-    m_LastClickedID: 9634
-    m_ExpandedIDs: 00000000d0240000ae250000b6250000e025000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 9}
+    m_SelectedIDs: de250000
+    m_LastClickedID: 9694
+    m_ExpandedIDs: 00000000d0240000ae250000b625000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Materials
+      m_OriginalName: Materials
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 9770
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 11}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -674,7 +674,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c623000000000000ec24000086250000c2340000
+    m_ExpandedInstanceIDs: c623000000000000ec24000086250000c2340000b2300000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
