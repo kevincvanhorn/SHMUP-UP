@@ -47,10 +47,15 @@ public class PlayerSpawner : MonoBehaviour {
 
     public void SpawnPlayer()
     {
-        Instantiate(player, playerSpawn.transform.position, player.transform.rotation);
-        StartCoroutine(MakeInvulnerable());
-        if (OnPlayerSpawn != null)
-            OnPlayerSpawn();
+        if (!gameManager.isPlayerAlive)
+        {
+            gameManager.isPlayerAlive = true;
+            Instantiate(player, playerSpawn.transform.position, player.transform.rotation);
+            StartCoroutine(MakeInvulnerable());
+            if (OnPlayerSpawn != null)
+                OnPlayerSpawn();
+        }
+        
     }
 
     public void OnPlayerDie()

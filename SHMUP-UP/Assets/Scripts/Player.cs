@@ -65,7 +65,6 @@ public class Player : MonoBehaviour {
             playerDeath = new UnityEvent();
         PlayerSpawner playerSpawner = FindObjectOfType<PlayerSpawner>();
         playerDeath.AddListener(playerSpawner.OnPlayerDie);
-        gameManager.isPlayerAlive = true;
 
         renderer = GetComponent<Renderer>();
         material = renderer.sharedMaterial;

@@ -20,13 +20,6 @@ public class Enemy03 : Enemy
         StartCoroutine(Fire());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Vector3 position = rigidBody.position;
-        rigidBody.MovePosition(new Vector3(position.x, position.y, position.z + moveSpeed * Time.deltaTime));
-    }
-
     IEnumerator Fire()
     {
         yield return new WaitForSeconds(1f);

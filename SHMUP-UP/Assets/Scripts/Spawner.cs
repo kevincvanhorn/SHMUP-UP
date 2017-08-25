@@ -80,7 +80,14 @@ public class Spawner : MonoBehaviour {
             mySpawnXMax = 320;
         }
 
-        for(int i=0; i<2000; i++)
+        if (enemy == 2)
+        {
+            mySpawnY = 0;
+            mySpawnXMin = -380;
+            mySpawnXMax = 600;
+        }
+
+        for (int i=0; i<2000; i++)
         {
             //int randEnemy = (int)Random.Range(0, enemies.Length);
             Instantiate(enemies[enemy], new Vector3(Random.Range(mySpawnXMin, mySpawnXMax), mySpawnY, mySpawnZ), enemies[enemy].transform.rotation);
