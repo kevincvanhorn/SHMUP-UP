@@ -36,16 +36,16 @@ public class Boss01 : Enemy
 
     IEnumerator Fire()
     {
-        yield return new WaitForSeconds(2);
-        StartCoroutine(FireLazer());
+        yield return new WaitForSeconds(7);
 
         StartCoroutine(FireSpray(4.5f));
         StartCoroutine(FireFour(10));
+        StartCoroutine(FireLazer());
 
         yield return new WaitWhile(() => ammo > 0);
         fireRate02 = 0.05f;
         bulletSpawn5.rotateRate = 45;
-        ammo02 = 500;
+        ammo02 = 400;
         StartCoroutine(FireSpray(0));
         StartCoroutine(FireSprayShift());
         StartCoroutine(FireLazer());
