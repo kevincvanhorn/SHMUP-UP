@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour {
     public bool isPlayerAlive = true;
     public bool isPlayerInvunlverable = false;
     public bool isGameOver = false;
+    public bool isBossActive = false;
 
     public Text scoreText;
     public Text livesText;
     public GameObject gameOverPanel;
+    public Image healthBarGreen, healthBarRed;
 
     public int score;
     private int lives;
@@ -50,8 +52,12 @@ public class GameManager : MonoBehaviour {
         gameOverPanel = GameObject.Find("GameOverPanel");
         gameOverPanel.gameObject.SetActive(false);
 
+        healthBarGreen.gameObject.SetActive(false);
+        healthBarRed.gameObject.SetActive(false);
+
         Lives = 7;
         StartCoroutine("AddScore");
+        StartCoroutine(DisplayHealth());
 	}
 	
 	// Update is called once per frame
@@ -63,7 +69,6 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(1);
             
         }
-            
     }
 
     IEnumerator AddScore()
@@ -89,5 +94,25 @@ public class GameManager : MonoBehaviour {
     {
         isGameOver = true;
         gameOverPanel.gameObject.SetActive(true);
+    }
+
+    IEnumerator DisplayHealth()
+    {
+        yield return new WaitWhile(() => isBossActive != true);
+        healthBarGreen.gameObject.SetActive(true);
+        healthBarRed.gameObject.SetActive(true);
+
+        Boss01 boss01 = GameObject.FindObjectOfType<Boss01>();
+        float healthDivider = (1 / boss01.healthMax) * 100;
+
+       
+
+        while (isBossActive)
+        {
+            healthBarGreen.rectTransform.sizeDelta = new Vector2(boss01.health * healthDivider, 4.84f);
+            yield return new WaitForEndOfFrame();
+        }
+
+        healthBarRed.gameObject.SetActive(false);
     }
 }

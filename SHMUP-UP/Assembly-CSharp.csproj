@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Bullets\Bullet02.cs" />
      <Compile Include="Assets\Scripts\Bullets\Bullet03.cs" />
      <Compile Include="Assets\Scripts\Bullets\Bullet04.cs" />
+     <Compile Include="Assets\Scripts\Bullets\Lazer.cs" />
      <Compile Include="Assets\Scripts\Enemy\AnimationDestroy.cs" />
      <Compile Include="Assets\Scripts\Enemy\Boss01.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />

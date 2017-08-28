@@ -5,9 +5,10 @@ using UnityEngine.Events;
 
 public class Boss01 : Enemy
 {
-
+    public float healthMax;
     public GameObject bullet01, bullet02;
     public GameObject bulletSpawn1, bulletSpawn2, bulletSpawn3, bulletSpawn4;
+    public GameObject lazerSpawn1, lazer, lazerParticles;
     public Gun bulletSpawn5;
     public float fireRate = .1f, fireRate02 = .1f;
     public int ammo = 3, ammo02 = 200;
@@ -20,23 +21,25 @@ public class Boss01 : Enemy
 
     private float timeLastFire = 0;
 
-    //public GameObject particlesDeath;
+    void Awake()
+    {
+        gameManager = GameManager.Instance();
+    }
 
     // Use this for initialization
     void Start()
     {
+        healthMax = health;
+        gameManager.isBossActive = true;
         StartCoroutine(Fire());
-    }
-
-    void RotateSpray(float delay)
-    {
-        StartCoroutine(FireSpray(delay));
-        
     }
 
     IEnumerator Fire()
     {
-        RotateSpray(4.5f);
+        yield return new WaitForSeconds(2);
+        StartCoroutine(FireLazer());
+
+        StartCoroutine(FireSpray(4.5f));
         StartCoroutine(FireFour(10));
 
         yield return new WaitWhile(() => ammo > 0);
@@ -45,11 +48,28 @@ public class Boss01 : Enemy
         ammo02 = 500;
         StartCoroutine(FireSpray(0));
         StartCoroutine(FireSprayShift());
+        StartCoroutine(FireLazer());
+
+        yield return new WaitWhile(() => ammo02 > 0);
+        StartCoroutine(FireLazer());
 
         yield return null;
 
         ammo = 200;
         StartCoroutine(FireFour(20));
+
+    }
+
+    IEnumerator FireLazer()
+    {
+        GameObject newLazerParticles = Instantiate(lazerParticles, lazerSpawn1.transform.position, lazerSpawn1.transform.rotation);
+        newLazerParticles.transform.parent = lazerSpawn1.transform;
+        yield return new WaitForSeconds(2);
+
+        GameObject newLazer = Instantiate(lazer, lazerSpawn1.transform.position, lazerSpawn1.transform.rotation);
+        newLazer.transform.parent = lazerSpawn1.transform;
+        
+        yield return null;
     }
 
     IEnumerator FireSpray(float delay)
@@ -102,6 +122,7 @@ public class Boss01 : Enemy
 
     protected override void Die()
     {
+        gameManager.isBossActive = false;
         base.Die();
         //Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
     }
