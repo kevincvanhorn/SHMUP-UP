@@ -23,7 +23,7 @@ public class Enemy03 : Enemy
     IEnumerator Fire()
     {
         yield return new WaitForSeconds(1f);
-        while (ammo > 0 && gameManager.isPlayerAlive)
+        while (ammo > 0) // && gameManager.isPlayerAlive)
         {
             Instantiate(bullet, bulletSpawn1.transform.position, bulletSpawn1.transform.rotation);
             Instantiate(bullet, bulletSpawn2.transform.position, bulletSpawn2.transform.rotation);

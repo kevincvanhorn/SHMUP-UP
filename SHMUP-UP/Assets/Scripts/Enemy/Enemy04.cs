@@ -21,15 +21,10 @@ public class Enemy04 : Enemy
         StartCoroutine(Fire());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     IEnumerator Fire()
     {
         yield return new WaitForSeconds(3.2f);
-        while (ammo > 0 && gameManager.isPlayerAlive)
+        while (ammo > 0)// && gameManager.isPlayerAlive)
         {//(isActiveAndEnabled && gameManager.isPlayerAlive) {
             Instantiate(bullet, bulletSpawn1.transform.position, bulletSpawn1.transform.rotation);
             Instantiate(bullet, bulletSpawn2.transform.position, bulletSpawn2.transform.rotation);

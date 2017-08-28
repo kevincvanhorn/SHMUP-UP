@@ -30,19 +30,10 @@ public class Enemy02 : Enemy {
         rigidBody.MovePosition(new Vector3(position.x, position.y, position.z + moveSpeed * Time.deltaTime));
     }
 
-    public void CheckFire()
-    {
-        timeLastFire += Time.deltaTime;
-        if (timeLastFire >= fireRate)
-        {
-            Fire();
-            timeLastFire = 0;
-        }
-    }
 
     IEnumerator Fire()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         while (ammo >0 && gameManager.isPlayerAlive) {//(isActiveAndEnabled && gameManager.isPlayerAlive) {
             Vector3 rot = new Vector3(bullet.transform.rotation.x, bullet.transform.rotation.y, bulletSpawn1.transform.rotation.z);
             Instantiate(bullet, bulletSpawn1.transform.position, bullet.transform.rotation);

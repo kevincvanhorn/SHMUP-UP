@@ -6,10 +6,10 @@ public class Spawner : MonoBehaviour {
 
     public GameObject[] enemies;
 
-    private float spawnXMin = -650;
-    private float spawnXMax = 650;
+    private float spawnXMin = -520;
+    private float spawnXMax = 520;
     private float spawnY = 62;
-    private float spawnZ = 630;
+    private float spawnZ = 800;
 
 	// Use this for initialization
 	void Start () {
@@ -20,39 +20,79 @@ public class Spawner : MonoBehaviour {
 	IEnumerator Spawn()
     {
 
-        //yield return null;
-
+        /* Spawn Red Waves*/
         yield return new WaitForSeconds(1);
-        SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);
-        SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ);
+        SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);  // Left Out    "/".
+        SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ); // Right Out          "\".
         yield return new WaitForSeconds(.5f);
-        SpawnAcross(0, 3, 120, 0, -120, spawnZ);
+        SpawnAcross(0, 1, 0, 0, 0, spawnZ + 120);              // Middle         "."
+        SpawnAcross(0, 2, 240, 0, -120, spawnZ);   // Middle Front  "- -"
+        yield return new WaitForSeconds(.8f);
 
-        yield return new WaitForSeconds(2);
-        SpawnAcross(0, 3, 120, 0, -120, spawnZ+240);
-        SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);
-        SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ);
+        SpawnAcross(0, 2, 240, 0, -120, spawnZ);         // Middle        "- -"
+        SpawnAcross(0, 1, 0, 0, 0, spawnZ - 120);        // Middle Front   "."
         yield return new WaitForSeconds(.5f);
+       
+        SpawnAcross(0, 3, 120, 0, -120, spawnZ+240);     // Middle Across "---".
+        SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);  // Left Out    "/".
+        SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ); // Right Out          "\".
+        yield return new WaitForSeconds(.5f);
+        SpawnAcross(0, 3, 120, 0, -120, spawnZ);         // Middle Across "---".
+        SpawnAcross(0, 3, 120, 0, spawnXMin, spawnZ);    // Left Across "---"
+        SpawnAcross(0, 3, -120, 0, spawnXMax, spawnZ);   // Right Across      "---"
+        yield return new WaitForSeconds(.5f);
+        SpawnAcross(0, 1, 0, 0, 0, spawnZ + 120);              // Middle         "."
+        SpawnAcross(0, 2, 240, 0, -120, spawnZ);   // Middle Front  "- -"
+        yield return new WaitForSeconds(.5f);
+        SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);  // Left Out    "/".
+        SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ); // Right Out          "\".
+        yield return new WaitForSeconds(.5f);
+        SpawnAcross(0, 1, 0, 0, 0, spawnZ + 120);              // Middle         "."
+        SpawnAcross(0, 2, 240, 0, -120, spawnZ);   // Middle Front  "- -"
+        yield return new WaitForSeconds(.5f);
+        SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);  // Left Out    "/".
+        SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ); // Right Out          "\".
+        yield return new WaitForSeconds(.5f);
+        SpawnAcross(0, 1, 0, 0, 0, spawnZ + 120);              // Middle         "."
+        SpawnAcross(0, 2, 240, 0, -120, spawnZ);   // Middle Front  "- -"
+        yield return new WaitForSeconds(.5f);
+        SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);  // Left Out    "/".
+        SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ); // Right Out          "\".
+        yield return new WaitForSeconds(.5f);
+        SpawnAcross(0, 1, 0, 0, 0, spawnZ + 120);              // Middle         "."
+        SpawnAcross(0, 2, 240, 0, -120, spawnZ);   // Middle Front  "- -"
 
-        StartCoroutine(SpawnLoop(0,.5f));
-        StartCoroutine(SpawnLoop(1, 3f));
-        StartCoroutine(SpawnLoop(2, 8f));
-        StartCoroutine(SpawnLoop(3, 11f));
+        
+        StartCoroutine(SpawnLoop(0,.2f, 150, 1));
+
+        yield return new WaitForSeconds(8f);
+        /*Spawn Green Waves*/
+        StartCoroutine(SpawnLoop(1, 3f, 3, 1));
+
+        yield return new WaitForSeconds(8f);
+        StartCoroutine(SpawnLoop(1, 3f, 4, 2));
+        yield return new WaitForSeconds(8f);
+        StartCoroutine(SpawnLoop(1, 3f, 6, 3));
+        
+
+        yield return new WaitForSeconds(22f);
+        SpawnAcross(2, 1, 0, 0, 0, 1100);
+
+        yield return new WaitForSeconds(4f);
+        SpawnAcross(2, 2, 700, 0, -350, 1200);
+        yield return new WaitForSeconds(8f);
+        StartCoroutine(SpawnLoop(2, 8f, 200, 1));
+
+        SpawnAcross(3, 1, 0, 0, 0, 1800);
+        yield return new WaitForSeconds(5f);
+        SpawnAcross(3, 2, 400, 0, -200, 1900);
+        yield return new WaitForSeconds(4f);
+
+        StartCoroutine(SpawnLoop(3, 5f, 200, 1));
+        yield return new WaitForSeconds(8f);
 
     }
 
-    /*IEnumerator SpawnAcross(int enemy, int numAcross, float spacing, float spawnXStart, float spawnDelay)
-    {
-        float spawnXCur = spawnXStart;
-        for (int i = 0; i < numAcross; i++)
-        {
-            Instantiate(enemies[0], new Vector3(spawnXCur, spawnY, spawnZ), enemies[0].transform.rotation);
-            spawnXCur += spacing;
-            yield return null; // wait for end of frame.
-            yield return new WaitForSeconds(spawnDelay);
-        }
-        yield return null;
-    }*/
 
     void SpawnAcross(int enemy, int numAcross, float spacingX, float spacingZ, float spawnXStart, float spawnZStart)
     {
@@ -61,13 +101,13 @@ public class Spawner : MonoBehaviour {
 
         for (int i = 0; i < numAcross; i++)
         {
-            Instantiate(enemies[0], new Vector3(spawnXCur, spawnY, spawnZCur), enemies[0].transform.rotation);
+            Instantiate(enemies[enemy], new Vector3(spawnXCur, spawnY, spawnZCur), enemies[enemy].transform.rotation);
             spawnXCur += spacingX;
             spawnZCur += spacingZ;
         }
     }
 
-    IEnumerator SpawnLoop(int enemy, float frequency)
+    IEnumerator SpawnLoop(int enemy, float frequency, float numEnemies, float consecEnemies)
     {
         float mySpawnZ = spawnZ;
         float mySpawnY = spawnY;
@@ -79,32 +119,44 @@ public class Spawner : MonoBehaviour {
             mySpawnY = 0;
             mySpawnXMin = -650;
             mySpawnXMax = 320;
+            for(int i=0; i < consecEnemies; i++)
+            {
+                mySpawnXMax -= 200;
+            }
         }
 
         if (enemy == 2)
         {
             mySpawnY = 0;
             mySpawnXMin = -380;
-            mySpawnXMax = 600;
+            mySpawnXMax = 300;
         }
         if (enemy == 3)
         {
             mySpawnY = 0;
-            mySpawnXMin = -600;
-            mySpawnXMax = 520;
+            mySpawnXMin = -450;
+            mySpawnXMax = 375;
         }
 
-        for (int i=0; i<2000; i++)
+        float tempSpawnX = mySpawnXMin;
+
+        for (int i=0; i<numEnemies; i++)
         {
             if (enemy == 1)
-                mySpawnZ = Random.Range(0, 455);
+                mySpawnZ = Random.Range(100, 700);
             else if (enemy == 2)
                 mySpawnZ = Random.Range(1100, 1500);
             else if(enemy == 3)
-                mySpawnZ = Random.Range(1700, 2000);
+                mySpawnZ = Random.Range(1620, 2094);
 
             //int randEnemy = (int)Random.Range(0, enemies.Length);
-            Instantiate(enemies[enemy], new Vector3(Random.Range(mySpawnXMin, mySpawnXMax), mySpawnY, mySpawnZ), enemies[enemy].transform.rotation);
+            tempSpawnX = Random.Range(mySpawnXMin, mySpawnXMax);
+            for (int e=0; e < consecEnemies; e++)
+            {
+                Instantiate(enemies[enemy], new Vector3(tempSpawnX, mySpawnY, mySpawnZ), enemies[enemy].transform.rotation);
+                tempSpawnX += 200;
+            }
+            
             yield return new WaitForSeconds(frequency);
         }
         
