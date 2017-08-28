@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
 
     public Rigidbody rigidBody; // Not Kinematic: moves not by transform, but by physics
     public CollisionInfo collisions;
-    public float moveSpeed = 300f;
+    public float moveSpeedMax = 300f;
     public GameObject bullet;
     public float fireRate = .1f;
     public GameObject particlesDeath;
@@ -29,10 +29,14 @@ public class Player : MonoBehaviour {
     private float xDir, zDir;
     private Vector3 newPos;
 
+    private float moveSpeed;
+    private float moveSpeedMin;
+    private float diagSpeedXMin, diagSpeedZMin;
+    private float diagSpeedXMax, diagSpeedZMax;
     
     Material material;
     public Color color;
-    Renderer renderer;
+    Renderer renderer2;
 
     private GameManager gameManager;
 
@@ -55,8 +59,15 @@ public class Player : MonoBehaviour {
         bulletSpawn1 = transform.Find("BulletSpawn_01").gameObject;
         bulletSpawn2 = transform.Find("BulletSpawn_02").gameObject;
 
-        diagSpeedX = moveSpeed * Mathf.Cos(45 * Mathf.Deg2Rad);
-        diagSpeedZ = moveSpeed * Mathf.Sin(45*Mathf.Deg2Rad);
+        moveSpeedMin = moveSpeedMax / 2;
+        moveSpeed = moveSpeedMax;
+
+        diagSpeedXMax = moveSpeedMax * Mathf.Cos(45 * Mathf.Deg2Rad);
+        diagSpeedZMax = moveSpeedMax * Mathf.Sin(45*Mathf.Deg2Rad);
+        diagSpeedXMin = moveSpeedMin * Mathf.Cos(45 * Mathf.Deg2Rad);
+        diagSpeedZMin = moveSpeedMin * Mathf.Sin(45 * Mathf.Deg2Rad);
+        diagSpeedX = diagSpeedXMax;
+        diagSpeedZ = diagSpeedZMax;
 
         xDir = 1;
         zDir = 1;
@@ -66,10 +77,12 @@ public class Player : MonoBehaviour {
         PlayerSpawner playerSpawner = FindObjectOfType<PlayerSpawner>();
         playerDeath.AddListener(playerSpawner.OnPlayerDie);
 
-        renderer = GetComponent<Renderer>();
-        material = renderer.sharedMaterial;
+        renderer2 = GetComponent<Renderer>();
+        material = renderer2.sharedMaterial;
 
         StartCoroutine(CycleEmission());
+
+        moveSpeedMax = moveSpeed;
     }
 	
 	// Update is called once per frame
@@ -153,7 +166,15 @@ public class Player : MonoBehaviour {
         //---------------
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            //TODO
+            diagSpeedX = diagSpeedXMin;
+            diagSpeedZ = diagSpeedZMin;
+            moveSpeed = moveSpeedMin;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            moveSpeed = moveSpeedMax;
+            diagSpeedX = diagSpeedXMax;
+            diagSpeedZ = diagSpeedZMax;
         }
 
         //------------

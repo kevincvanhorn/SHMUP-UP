@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\Bullets\Bullet01.cs" />
      <Compile Include="Assets\Scripts\Bullets\Bullet02.cs" />
      <Compile Include="Assets\Scripts\Bullets\Bullet03.cs" />
+     <Compile Include="Assets\Scripts\Bullets\Bullet04.cs" />
      <Compile Include="Assets\Scripts\Enemy\AnimationDestroy.cs" />
      <Compile Include="Assets\Scripts\Enemy\Boss01.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\Scripts\Enemy\Enemy02.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy03.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy04.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Gun.cs" />
      <Compile Include="Assets\Scripts\Enemy\TrackMovement.cs" />
      <Compile Include="Assets\Scripts\Enemy\TrackMovementSmooth.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />

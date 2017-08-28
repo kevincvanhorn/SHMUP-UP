@@ -39,11 +39,6 @@ public class PlayerSpawner : MonoBehaviour {
     void Start () {
         SpawnPlayer();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void SpawnPlayer()
     {
