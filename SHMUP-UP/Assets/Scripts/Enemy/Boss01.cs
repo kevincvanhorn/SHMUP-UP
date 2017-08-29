@@ -13,13 +13,15 @@ public class Boss01 : Enemy
     public float fireRate = .1f, fireRate02 = .1f;
     public int ammo = 3, ammo02 = 200;
     public TrackMovementSmooth gunTracking;
+    public Animator pyramidAnimator;
 
     public delegate void RotationEvent();
     public static event RotationEvent QueryRotation;
 
-    public float fireSprayShift = 10;
+    public delegate void AttackEvent();
+    public static event AttackEvent PyramidAttack;
 
-    private float timeLastFire = 0;
+    public float fireSprayShift = 10;
 
     void Awake()
     {
@@ -37,6 +39,8 @@ public class Boss01 : Enemy
     IEnumerator Fire()
     {
         yield return new WaitForSeconds(7);
+        while(health > 0)
+        {
 
         StartCoroutine(FireSpray(4.5f));
         StartCoroutine(FireFour(10));
@@ -49,15 +53,33 @@ public class Boss01 : Enemy
         StartCoroutine(FireSpray(0));
         StartCoroutine(FireSprayShift());
         StartCoroutine(FireLazer());
+        // send out triangle here
+        yield return new WaitForSeconds(8f);
+
+        pyramidAnimator.SetBool("firePyramid", true);
+        if (PyramidAttack != null)
+            PyramidAttack(); // Call the event.
+        yield return new WaitForSeconds(10);
+        pyramidAnimator.SetBool("firePyramid", false);
+
+        yield return new WaitForSeconds(6f);
+        fireRate02 = 0.05f;
+        bulletSpawn5.rotateRate = 9.86f;
+
+        pyramidAnimator.SetBool("firePyramid", true);
+        if (PyramidAttack != null)
+            PyramidAttack(); // Call the event.
+        yield return new WaitForSeconds(10);
+        pyramidAnimator.SetBool("firePyramid", false);
 
         yield return new WaitWhile(() => ammo02 > 0);
         StartCoroutine(FireLazer());
 
         yield return null;
 
-        ammo = 200;
+        ammo = 50;
         StartCoroutine(FireFour(20));
-
+        }
     }
 
     IEnumerator FireLazer()

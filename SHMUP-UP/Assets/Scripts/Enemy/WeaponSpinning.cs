@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy03 : Enemy
-{
-
+public class WeaponSpinning : MonoBehaviour {
     public GameObject bullet;
     public GameObject bulletSpawn1, bulletSpawn2, bulletSpawn3;
+    public float fireRate = .1f;
     public int ammo = 3;
-    public float firerate;
 
-    //public GameObject particlesDeath;
-
-    // Use this for initialization
     void Start()
+    {
+        Boss01.PyramidAttack += PyramidAttack;
+    }
+
+    void PyramidAttack()
     {
         StartCoroutine(Fire());
     }
@@ -27,14 +27,13 @@ public class Enemy03 : Enemy
             Instantiate(bullet, bulletSpawn2.transform.position, bulletSpawn2.transform.rotation);
             Instantiate(bullet, bulletSpawn3.transform.position, bulletSpawn3.transform.rotation);
             ammo--;
-            yield return new WaitForSeconds(firerate);
+            yield return new WaitForSeconds(fireRate);
         }
+        ammo = 50;
     }
 
-    protected override void Die()
+    void OnDisable()
     {
-        base.Die();
-        //Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
+        Boss01.PyramidAttack -= PyramidAttack;
     }
-
 }

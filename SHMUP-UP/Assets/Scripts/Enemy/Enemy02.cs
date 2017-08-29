@@ -11,8 +11,6 @@ public class Enemy02 : Enemy {
 
     private Animator animator;
 
-    private float timeLastFire = 0;
-
     public GameObject particlesDeath;
 
     // Use this for initialization
