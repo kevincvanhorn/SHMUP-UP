@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour {
     public Image healthBarGreen, healthBarRed;
 
     public int score;
-    private int lives;
+    public int kills;
+    public int lives;
 
     public int Lives
     {
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour {
         healthBarGreen.gameObject.SetActive(false);
         healthBarRed.gameObject.SetActive(false);
 
-        Lives = 7;
+        Lives = lives;
         StartCoroutine("AddScore");
         StartCoroutine(DisplayHealth());
 	}
@@ -94,6 +95,10 @@ public class GameManager : MonoBehaviour {
     {
         isGameOver = true;
         gameOverPanel.gameObject.SetActive(true);
+        Text scoreText = gameOverPanel.transform.Find("ScoreInt").GetComponent<Text>();
+        Text killsText = gameOverPanel.transform.Find("KillsInt").GetComponent<Text>();
+        scoreText.text = score.ToString();
+        killsText.text = kills.ToString();
     }
 
     IEnumerator DisplayHealth()

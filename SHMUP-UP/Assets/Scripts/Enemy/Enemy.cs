@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour {
     protected virtual void Die()
     {
         gameManager.score += killScore;
+        gameManager.kills++;
         Destroy(gameObject);
     }
 
