@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerSpawner.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
+     <Compile Include="Assets\Scripts\Tools\HighScorePanel.cs" />
      <Compile Include="Assets\Scripts\Tools\MainMenuPanel.cs" />
      <Compile Include="Assets\Scripts\Tools\Options.cs" />
      <Compile Include="Assets\Scripts\Tools\ParticleDestroy.cs" />

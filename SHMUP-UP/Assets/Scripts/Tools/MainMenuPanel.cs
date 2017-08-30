@@ -24,8 +24,7 @@ public class MainMenuPanel : MonoBehaviour {
         //options.difficulty = 0;
         diffArray = new string[] { "Beginner", "Advanced", "Ungodly" };
         difficulty = 0;
-        
-        
+
         optionPanel.gameObject.SetActive(false);
     }
 
@@ -56,5 +55,10 @@ public class MainMenuPanel : MonoBehaviour {
         difficultyText.text = diffArray[difficulty];
 
         options.difficulty = difficulty;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
