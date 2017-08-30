@@ -16,6 +16,17 @@ public class Enemy03 : Enemy
     void Start()
     {
         StartCoroutine(Fire());
+
+        if (gameManager.difficulty == 0)    
+        {
+            health -= 10;
+            killScore -= 100;
+            firerate += .02f;
+        }
+        else if (gameManager.difficulty == 2)
+            killScore += 200;
+            
+
     }
 
     IEnumerator Fire()

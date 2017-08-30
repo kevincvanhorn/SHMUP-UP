@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour {
     public bool isPlayerAlive = true;
     public bool isPlayerInvunlverable = false;
     public bool isGameOver = false;
+    public bool isGameWin = false;
     public bool isBossActive = false;
 
     public Text scoreText;
     public Text livesText;
     public GameObject gameOverPanel;
+    public GameObject gameWinPanel;
     public Image healthBarGreen, healthBarRed;
 
     public int score;
@@ -62,9 +64,17 @@ public class GameManager : MonoBehaviour {
 
         gameOverPanel = GameObject.Find("GameOverPanel");
         gameOverPanel.gameObject.SetActive(false);
+        gameWinPanel.gameObject.SetActive(false);
 
         healthBarGreen.gameObject.SetActive(false);
         healthBarRed.gameObject.SetActive(false);
+
+        if (difficulty == 0)
+            lives = 40;
+        else if (difficulty == 1)
+            lives = 30;
+        else if (difficulty == 2)
+            lives = 20;
 
         Lives = lives;
         StartCoroutine("AddScore");
@@ -88,7 +98,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator AddScore()
     {
-        while (isActiveAndEnabled && !isGameOver)
+        while (isActiveAndEnabled && !isGameOver && !isGameWin)
         {
             yield return new WaitForSeconds(.05f);
             score++;
@@ -109,11 +119,24 @@ public class GameManager : MonoBehaviour {
     {
         isGameOver = true;
         gameOverPanel.gameObject.SetActive(true);
-        Text scoreText = gameOverPanel.transform.Find("ScoreInt").GetComponent<Text>();
+        Text scoresText = gameOverPanel.transform.Find("ScoreInt").GetComponent<Text>();
         Text killsText = gameOverPanel.transform.Find("KillsInt").GetComponent<Text>();
-        scoreText.text = score.ToString();
+        scoresText.text = score.ToString();
         killsText.text = kills.ToString();
     }
+
+    public void onGameWin()
+    {
+        isGameWin = true;
+        gameWinPanel.gameObject.SetActive(true);
+        Text scoresText = gameWinPanel.transform.Find("ScoreInt").GetComponent<Text>();
+        Text killsText = gameWinPanel.transform.Find("KillsInt").GetComponent<Text>();
+        Text livesText = gameWinPanel.transform.Find("LivesInt").GetComponent<Text>();
+        livesText.text = lives.ToString();
+        scoresText.text = score.ToString();
+        killsText.text = kills.ToString();
+        scoreText.gameObject.SetActive(false);
+}
 
     IEnumerator DisplayHealth()
     {
@@ -123,8 +146,6 @@ public class GameManager : MonoBehaviour {
 
         Boss01 boss01 = GameObject.FindObjectOfType<Boss01>();
         float healthDivider = (1 / boss01.healthMax) * 100;
-
-       
 
         while (isBossActive)
         {

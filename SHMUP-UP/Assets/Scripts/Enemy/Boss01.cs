@@ -22,6 +22,7 @@ public class Boss01 : Enemy
     public static event AttackEvent PyramidAttack;
 
     public float fireSprayShift = 10;
+    public GameObject particlesDeath;
 
     void Awake()
     {
@@ -31,8 +32,20 @@ public class Boss01 : Enemy
     // Use this for initialization
     void Start()
     {
-        healthMax = health;
+        
         gameManager.isBossActive = true;
+
+        if(gameManager.difficulty == 0)
+        {
+            killScore -= 5000;
+            health -= 200;
+        }
+        else if(gameManager.difficulty == 2)
+        {
+            killScore += 10000;
+        }
+
+        healthMax = health;
         StartCoroutine(Fire());
     }
 
@@ -145,8 +158,12 @@ public class Boss01 : Enemy
     protected override void Die()
     {
         gameManager.isBossActive = false;
-        base.Die();
-        //Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
+        gameManager.isGameWin = true;
+        Instantiate(particlesDeath, transform.position, particlesDeath.transform.rotation);
+        gameManager.score += killScore;
+        gameManager.kills++;
+        gameManager.onGameWin();
+        Destroy(gameObject);
     }
 
 }

@@ -11,8 +11,16 @@ public class Spawner : MonoBehaviour {
     private float spawnY = 62;
     private float spawnZ = 800;
 
-	// Use this for initialization
-	void Start () {
+    private GameManager gameManager;
+
+
+    void Awake()
+    {
+        gameManager = GameManager.Instance();
+    }
+
+    // Use this for initialization
+    void Start () {
         //InvokeRepeating("Spawn", 5, 2);
         StartCoroutine("Spawn"); //StopCoroutine //StartCoroutine(Spawn()); - alternate method
     }
@@ -21,6 +29,7 @@ public class Spawner : MonoBehaviour {
     {
 
         /*Spawn Red Waves*/
+        /*
         yield return new WaitForSeconds(1);
         SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);  // Left Out    "/".
         SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ); // Right Out          "\".
@@ -66,10 +75,11 @@ public class Spawner : MonoBehaviour {
 
         
         StartCoroutine(SpawnLoop(0,.2f, 150, 1));
-
-        yield return new WaitForSeconds(8f);
+        */
+        //yield return new WaitForSeconds(8f);
 
         /*Spawn Green Waves*/
+        /*
         StartCoroutine(SpawnLoop(1, 3f, 3, 1));
 
         yield return new WaitForSeconds(8f);
@@ -79,16 +89,18 @@ public class Spawner : MonoBehaviour {
         
     
         yield return new WaitForSeconds(22f);
-        
+        */
+        /*
         SpawnAcross(2, 1, 0, 0, 0, 1100);
 
         yield return new WaitForSeconds(4f);
         SpawnAcross(2, 2, 700, 0, -350, 1200);
         yield return new WaitForSeconds(8f);
-        StartCoroutine(SpawnLoop(2, 2f, 3, 1));
+        StartCoroutine(SpawnLoop(2, 3f, 3, 1));
 
         yield return new WaitForSeconds(10f);
-
+        */
+        /*
         SpawnAcross(3, 1, 0, 0, 0, 1800);
         yield return new WaitForSeconds(5f);
         SpawnAcross(3, 2, 400, 0, -200, 1900);
@@ -103,10 +115,12 @@ public class Spawner : MonoBehaviour {
         yield return new WaitForSeconds(4f);
         StartCoroutine(SpawnLoop(0, .5f, 20, 3));
         yield return new WaitForSeconds(16f);
-
+        
         /*Spawn Boss*/
 
+        
         SpawnAcross(4, 1, 0, 0, 0, 1334);
+        /*
         yield return new WaitForSeconds(13f);
 
         SpawnAcross(0, 2, 240, 0, -120, spawnZ);         // Middle        "- -"
@@ -120,14 +134,19 @@ public class Spawner : MonoBehaviour {
         SpawnAcross(0, 1, 0, 0, 0, spawnZ - 120);        // Middle Front   "."
         yield return new WaitForSeconds(6f);
 
-        SpawnAcross(2, 2, 0, 0, -400, 1050);
-        SpawnAcross(2, 2, 0, 0, 400, 1050);
+        if(gameManager.difficulty > 0)
+        {
+            SpawnAcross(2, 2, 0, 0, -400, 1050);
+            SpawnAcross(2, 2, 0, 0, 400, 1050);
+        }
 
         yield return new WaitForSeconds(22f);
         SpawnAcross(1, 2, 600, 0, -500, 300);
         yield return new WaitForSeconds(18f);
         SpawnAcross(2, 2, 0, 0, -400, 1050);
         SpawnAcross(2, 2, 0, 0, 400, 1050);
+        */
+        yield return null;
     }
 
 

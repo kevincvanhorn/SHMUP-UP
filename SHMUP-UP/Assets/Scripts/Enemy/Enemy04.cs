@@ -18,6 +18,14 @@ public class Enemy04 : Enemy
     // Use this for initialization
     void Start()
     {
+        if (gameManager.difficulty == 0)
+            killScore -= 200;
+        else if (gameManager.difficulty == 2)
+            killScore -= 100;
+        else if (gameManager.difficulty == 2)
+            health += 10;
+        
+
         StartCoroutine(Fire());
     }
 
