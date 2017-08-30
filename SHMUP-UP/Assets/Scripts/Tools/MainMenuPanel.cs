@@ -12,6 +12,13 @@ public class MainMenuPanel : MonoBehaviour {
     private int difficulty;
     private string[] diffArray;
 
+    private Options options;
+
+    public void Awake()
+    {
+        options = Options.Instance();
+    }
+
     public void Start()
     {
         //options.difficulty = 0;
@@ -47,5 +54,7 @@ public class MainMenuPanel : MonoBehaviour {
 
         //options.difficulty = difficulty;
         difficultyText.text = diffArray[difficulty];
+
+        options.difficulty = difficulty;
     }
 }

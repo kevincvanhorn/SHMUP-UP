@@ -23,6 +23,14 @@ public class GameManager : MonoBehaviour {
     public int lives;
     public int difficulty;
 
+    private Options options;
+
+
+    void Awake()
+    {
+        options = Options.Instance();
+    }
+
     public int Lives
     {
         get { return lives; }
@@ -61,6 +69,9 @@ public class GameManager : MonoBehaviour {
         Lives = lives;
         StartCoroutine("AddScore");
         StartCoroutine(DisplayHealth());
+
+        difficulty = options.difficulty;
+        print(difficulty);
 	}
 	
 	// Update is called once per frame

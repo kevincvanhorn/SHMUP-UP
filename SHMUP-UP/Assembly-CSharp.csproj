@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\PlayerSpawner.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\Tools\MainMenuPanel.cs" />
+     <Compile Include="Assets\Scripts\Tools\Options.cs" />
      <Compile Include="Assets\Scripts\Tools\ParticleDestroy.cs" />
      <Compile Include="Assets\Scripts\Tools\Singleton.cs" />
  <Reference Include="UnityEngine.UI">
