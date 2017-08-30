@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
     public int score;
     public int kills;
     public int lives;
+    public int difficulty;
 
     public int Lives
     {
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
         gameOverPanel = GameObject.Find("GameOverPanel");
         gameOverPanel.gameObject.SetActive(false);
 
@@ -70,6 +72,7 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(1);
             
         }
+        print(difficulty);
     }
 
     IEnumerator AddScore()
