@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System.IO;
 using System;
 
@@ -156,14 +155,19 @@ public class HighScorePanel : MonoBehaviour
         string pathNames = "Assets/Resources/HighScore_Names.txt";
         string pathScores = "Assets/Resources/HighScore_Scores.txt";
 
+        TextAsset namesRead = (TextAsset)Resources.Load("HighScore_Names", typeof(TextAsset));
+        TextAsset scoresRead = (TextAsset)Resources.Load("HighScore_Scores", typeof(TextAsset));
+        fileNames = namesRead.text;
+        fileScores = scoresRead.text;
+
         //Read the text from directly from the test.txt file
-        StreamReader nameReader = new StreamReader(pathNames);
+        /*StreamReader nameReader = new StreamReader(pathNames);
         StreamReader scoreReader = new StreamReader(pathScores);
         fileNames = nameReader.ReadToEnd();
         fileScores = scoreReader.ReadToEnd();
 
         nameReader.Close();
-        scoreReader.Close();
+        scoreReader.Close();*/
     }
 
     public void setName()

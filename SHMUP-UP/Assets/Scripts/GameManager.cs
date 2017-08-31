@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour {
         healthBarGreen.gameObject.SetActive(false);
         healthBarRed.gameObject.SetActive(false);
 
+        difficulty = options.difficulty;
+
         if (difficulty == 0)
             lives = 40;
         else if (difficulty == 1)
@@ -80,8 +82,7 @@ public class GameManager : MonoBehaviour {
         StartCoroutine("AddScore");
         StartCoroutine(DisplayHealth());
 
-        difficulty = options.difficulty;
-        print(difficulty);
+        
 	}
 	
 	// Update is called once per frame
