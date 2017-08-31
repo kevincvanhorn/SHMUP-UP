@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour {
     {
 
         /*Spawn Red Waves*/
-        yield return new WaitForSeconds(1);
+        /*yield return new WaitForSeconds(1);
         SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);  // Left Out    "/".
         SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ); // Right Out          "\".
         yield return new WaitForSeconds(.5f);
@@ -75,9 +75,9 @@ public class Spawner : MonoBehaviour {
         
         StartCoroutine(SpawnLoop(0,.2f, 150, 1));
         yield return new WaitForSeconds(8f);
-
+        */
         /*Spawn Green Waves*/
-        StartCoroutine(SpawnLoop(1, 3f, 3, 1));
+        /*StartCoroutine(SpawnLoop(1, 3f, 3, 1));
 
         yield return new WaitForSeconds(8f);
         StartCoroutine(SpawnLoop(1, 3f, 4, 2));

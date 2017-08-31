@@ -14,4 +14,5 @@ public class Bullet01 : Bullet {
         Vector3 position = rigidBody.position;
         rigidBody.MovePosition(new Vector3(position.x, position.y, position.z + moveSpeed * Time.deltaTime));
     }
+
 }

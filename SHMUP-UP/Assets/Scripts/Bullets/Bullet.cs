@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour {
     public float moveSpeed = -500f;
     public float damage = 1;
     public string type; // "Player" or "Enemy"
+    public GameObject explosion;
 
 
     protected GameManager gameManager;
@@ -31,6 +32,7 @@ public class Bullet : MonoBehaviour {
         else if(type == "Player"){
             if(coll.gameObject.tag == "Enemy")
             {
+                Instantiate(explosion, transform.position+new Vector3(0,0,-50f), explosion.transform.rotation);
                 Destroy(gameObject);
             }
         }
