@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(1);
             
         }
-        print(difficulty);
     }
 
     IEnumerator AddScore()
@@ -123,6 +122,8 @@ public class GameManager : MonoBehaviour {
         Text killsText = gameOverPanel.transform.Find("KillsInt").GetComponent<Text>();
         scoresText.text = score.ToString();
         killsText.text = kills.ToString();
+
+        options.playerScore = score;
     }
 
     public void onGameWin()
@@ -136,7 +137,8 @@ public class GameManager : MonoBehaviour {
         scoresText.text = score.ToString();
         killsText.text = kills.ToString();
         scoreText.gameObject.SetActive(false);
-}
+        options.playerScore = score;
+    }
 
     IEnumerator DisplayHealth()
     {
@@ -154,5 +156,10 @@ public class GameManager : MonoBehaviour {
         }
 
         healthBarRed.gameObject.SetActive(false);
+    }
+
+    public void ToHighScores()
+    {
+        SceneManager.LoadScene(2);
     }
 }

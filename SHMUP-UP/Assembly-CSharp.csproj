@@ -72,6 +72,8 @@
      <Compile Include="Assets\Scripts\Tools\Options.cs" />
      <Compile Include="Assets\Scripts\Tools\ParticleDestroy.cs" />
      <Compile Include="Assets\Scripts\Tools\Singleton.cs" />
+     <None Include="Assets\Resources\HighScore_Scores.txt" />
+     <None Include="Assets\Resources\HighScore_Names.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

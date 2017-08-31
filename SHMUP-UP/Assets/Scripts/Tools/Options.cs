@@ -5,6 +5,7 @@ using UnityEngine;
 public class Options : MonoBehaviour {
 
     public int difficulty;
+    public int playerScore;
 
     private static Options options;
 
@@ -26,8 +27,4 @@ public class Options : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
