@@ -27,12 +27,6 @@ public class Spawner : MonoBehaviour {
 	
 	IEnumerator Spawn()
     {
-
-        SpawnAcross(2, 2, 0, 0, -400, 1050);
-        SpawnAcross(2, 2, 0, 0, 400, 1050);
-
-        yield return new WaitForSeconds(10);
-
         /*Spawn Red Waves*/
         yield return new WaitForSeconds(1);
         SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);  // Left Out    "/".
