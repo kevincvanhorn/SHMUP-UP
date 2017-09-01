@@ -9,6 +9,8 @@ public class MainMenuPanel : MonoBehaviour {
     public GameObject optionPanel;
     public Text difficultyText;
 
+    public Image diff2, diff3;
+
     private int difficulty;
     private string[] diffArray;
 
@@ -21,6 +23,8 @@ public class MainMenuPanel : MonoBehaviour {
 
     public void Start()
     {
+        diff2.gameObject.SetActive(false);
+        diff3.gameObject.SetActive(false);
         //options.difficulty = 0;
         diffArray = new string[] { "Beginner", "Advanced", "Ungodly" };
         difficulty = 0;
@@ -50,6 +54,22 @@ public class MainMenuPanel : MonoBehaviour {
         difficulty++;
         if (difficulty >= diffArray.Length)
             difficulty = 0;
+
+        if(difficulty == 0)
+        {
+            diff2.gameObject.SetActive(false);
+            diff3.gameObject.SetActive(false);
+        }
+        else if(difficulty == 1)
+        {
+            diff2.gameObject.SetActive(true);
+            diff3.gameObject.SetActive(false);
+        }
+        else if(difficulty == 2)
+        {
+            diff2.gameObject.SetActive(true);
+            diff3.gameObject.SetActive(true);
+        }
 
         //options.difficulty = difficulty;
         difficultyText.text = diffArray[difficulty];

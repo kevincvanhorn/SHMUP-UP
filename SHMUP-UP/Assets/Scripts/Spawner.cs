@@ -28,8 +28,13 @@ public class Spawner : MonoBehaviour {
 	IEnumerator Spawn()
     {
 
+        SpawnAcross(2, 2, 0, 0, -400, 1050);
+        SpawnAcross(2, 2, 0, 0, 400, 1050);
+
+        yield return new WaitForSeconds(10);
+
         /*Spawn Red Waves*/
-        /*yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1);
         SpawnAcross(0, 3, 120, 120, spawnXMin, spawnZ);  // Left Out    "/".
         SpawnAcross(0, 3, -120, 120, spawnXMax, spawnZ); // Right Out          "\".
         yield return new WaitForSeconds(.5f);
@@ -75,9 +80,9 @@ public class Spawner : MonoBehaviour {
         
         StartCoroutine(SpawnLoop(0,.2f, 150, 1));
         yield return new WaitForSeconds(8f);
-        */
+        
         /*Spawn Green Waves*/
-        /*StartCoroutine(SpawnLoop(1, 3f, 3, 1));
+        StartCoroutine(SpawnLoop(1, 3f, 3, 1));
 
         yield return new WaitForSeconds(8f);
         StartCoroutine(SpawnLoop(1, 3f, 4, 2));
@@ -138,8 +143,12 @@ public class Spawner : MonoBehaviour {
         yield return new WaitForSeconds(22f);
         SpawnAcross(1, 2, 600, 0, -500, 300);
         yield return new WaitForSeconds(18f);
-        SpawnAcross(2, 2, 0, 0, -400, 1050);
-        SpawnAcross(2, 2, 0, 0, 400, 1050);
+        if (gameManager.difficulty > 1)
+        {
+            SpawnAcross(2, 2, 0, 0, -400, 1050);
+            SpawnAcross(2, 2, 0, 0, 400, 1050);
+        }
+        
 
         yield return null;
     }

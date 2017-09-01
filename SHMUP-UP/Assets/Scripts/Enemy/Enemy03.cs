@@ -17,12 +17,14 @@ public class Enemy03 : Enemy
     {
         StartCoroutine(Fire());
 
-        if (gameManager.difficulty == 0)    
+        if (gameManager.difficulty == 0)
         {
             health -= 10;
             killScore -= 100;
-            firerate += .02f;
+            firerate += .1f;
         }
+        else if (gameManager.difficulty == 1)
+            firerate += .05f;
         else if (gameManager.difficulty == 2)
             killScore += 200;
             
