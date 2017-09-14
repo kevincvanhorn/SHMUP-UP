@@ -1,16 +1,14 @@
 # SHMUP-UP
 A colorful sci-fi shoot 'em up game built in Unity and C#.
-
+Play it at https://vanhorn.itch.io/shmupup
 Controls: Arrows to move, 'X' to fire.
 
-Play it at https://vanhorn.itch.io/shmupup !
+
 
 *Features:*
 1 Level, 3 Difficulties, 4 enemies, 1 boss fight.
-
 Time Constraint: 2 1/2 weeks.
 Production Time: 41hrs
-
 *New Concepts:*
 - C# Event Delegates
 - Game Manager
